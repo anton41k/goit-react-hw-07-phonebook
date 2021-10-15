@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { connect } from "react-redux";
 
-import contactsActions from "../../redux/actions";
 import css from "./Form.module.css";
 
-function Form({ onSubmit, resFilter }) {
+export default function Form({ onSubmit, resFilter }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const fieldsForm = { name: setName, number: setNumber };
@@ -24,12 +22,12 @@ function Form({ onSubmit, resFilter }) {
     onSubmit({ name, number });
 
     reset();
+    resFilter();
   };
 
   const reset = () => {
     setName("");
     setNumber("");
-    resFilter();
   };
 
   return (
@@ -69,11 +67,3 @@ function Form({ onSubmit, resFilter }) {
     </form>
   );
 }
-
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit: ({ name, number }) =>
-    dispatch(contactsActions.addContact({ name, number })),
-  resFilter: () => dispatch(contactsActions.resFilter("")),
-});
-
-export default connect(null, mapDispatchToProps)(Form);
