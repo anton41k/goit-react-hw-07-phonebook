@@ -1,10 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 
+import contactsActions from "../../redux/actions";
 import Contact from "../Contact/Contact";
 import css from "./ContactList.module.css";
 
 const ContactList = ({ contacts, onDeleteContact }) => {
-  console.log(contacts);
   return (
     <ul className={css.contact_list}>
       {contacts.map(({ id, name, number }) => (
@@ -25,4 +26,19 @@ const ContactList = ({ contacts, onDeleteContact }) => {
   );
 };
 
-export default ContactList;
+const getVisibleContacts = (allContacts, filter) => {
+  const normalizedFilter = filter.toLowerCase();
+  return allContacts.filter((contact) =>
+    contact.name.toLowerCase().includes(normalizedFilter)
+  );
+};
+
+const mapStateToProps = ({ contacts: { items, filter } }) => ({
+  contacts: getVisibleContacts(items, filter),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onDeleteContact: (id) => dispatch(contactsActions.deleteContact(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
