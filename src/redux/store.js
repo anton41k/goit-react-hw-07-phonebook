@@ -1,43 +1,19 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
 import logger from "redux-logger";
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import contactsReducer from "./contacts/reducer";
+import { contactApi } from "../services/contactApi";
 
-import contactsReduser from "./reducer";
-
-const contactsPersistConfig = {
-  key: "contacts",
-  storage,
-  blacklist: ["filter"],
-};
-
-const middleware = [
-  ...getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
-  logger,
-];
+const middleware = [...getDefaultMiddleware(), logger, contactApi.middleware];
 
 const store = configureStore({
   reducer: {
-    contacts: persistReducer(contactsPersistConfig, contactsReduser),
+    phonebook: contactsReducer,
+    [contactApi.reducerPath]: contactApi.reducer,
   },
-  middleware,
   devTools: process.env.NODE_ENV === "development",
+  middleware,
 });
 
-const persistor = persistStore(store);
-
-// eslint-disable-next-line import/no-anonymous-default-export
-export default { store, persistor };
+setupListeners(store.dispatch);
+export { store };

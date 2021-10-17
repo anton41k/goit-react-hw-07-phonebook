@@ -1,3 +1,11 @@
+.container {
+  background-color: var(--color-white);
+  padding: 30px;
+  max-width: 650px;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+
 .title_phonebook {
   font-size: 30px;
   font-weight: 800;

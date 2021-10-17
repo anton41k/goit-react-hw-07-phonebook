@@ -1,28 +1,29 @@
-import React from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
+import { AiOutlineSearch } from 'react-icons/ai';
 
-import contactsActions from "../../redux/actions";
+import { getFilterValue } from '../../redux/contacts/selectors.js';
+import { actions } from '../../redux/contacts';
 import css from "./Filter.module.css";
 
-const Filter = ({ value, onChange }) => (
-  <label className={css.filter_label}>
-    Find contacts by name
-    <input
-      className={css.filter_input}
-      type="text"
-      value={value}
-      onChange={onChange}
-    />
-  </label>
-);
+const Filter = () => {
+  const filter = useSelector(getFilterValue);
+  const dispatch = useDispatch();
+  return (
+    <label className={css.filter_label}>
+      Find contacts by name
+      <div className={css.thumb_input}>
+        <div className={css.form_icon}>
+          <AiOutlineSearch  size={16}/>
+        </div>
+        <input
+          className={css.filter_input}
+          type="text"
+          value={filter}
+          onChange={event => dispatch(actions.getFilterValue(event.target.value))}
+        />
+      </div>
+    </label>
+  )
+};
 
-const mapStateToProps = (state) => ({
-  value: state.contacts.filter,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onChange: (ev) =>
-    dispatch(contactsActions.changeFilter(ev.currentTarget.value)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default Filter;

@@ -6,13 +6,33 @@
 
   margin: 0 auto;
 
-  color: rgb(55, 55, 63);
+  color: var(--color-text);
   font-weight: 700;
 }
 
 .filter_input {
   margin: 4px 0;
   padding: 4px 10px;
-  border-radius: 3px;
-  border: 1px solid rgb(131, 126, 126);
+  border: 1px solid var(--color-input-border);
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-left: none;
+  height: 28px;
+}
+
+.thumb_input {
+  display: flex;
+  align-items: center;
+}
+
+.form_icon {
+  padding: 0;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  background-color: var(--color-input-border);
+  width: 30px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

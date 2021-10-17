@@ -1,17 +1,50 @@
 .del_btn {
-  width: 63px;
+  width: 90px;
+  height: 25px;
+  padding: 2px 5px;
   border-radius: 4px;
   outline: none;
   border: none;
   cursor: pointer;
-  color: white;
-  background-color: rgb(121, 170, 137);
+  color: var(--color-white);
 }
 
-.del_btn:hover {
-  background-color: rgb(252, 159, 159);
+.del_btn_active {
+  background-color: var(--color-gren);
+}
+.del_btn_disabled {
+  background-color: var(--color-input-border);
+}
+
+.del_btn_active:hover {
+  background-color: var(--color-pink);
 }
 
 .contact_checkbox {
   margin: 4px 3px;
+}
+.contact_item {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(2, 1fr) 98px;
+
+  border: 1px solid var(--color-item-border);
+  border-radius: 5px;
+}
+
+.contact_item:hover {
+  background-color: var(--color-bgc-item);
+}
+
+.contact_item span {
+  padding: 15px 8px;
+}
+
+.contact_item button {
+  margin: 15px 4px;
+}
+
+.contact_number {
+  border-left: 1px solid var(--color-item-border);
+  border-right: 1px solid var(--color-item-border);
 }
