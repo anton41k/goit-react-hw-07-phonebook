@@ -1,9 +1,9 @@
 :root {
   --color-white: rgb(255, 255, 255);
-  --color-gren: rgb(121, 170, 137);
+  --color-green: rgb(121, 170, 137);
   --color-pink: rgb(252, 159, 159);
   --color-brown-06: rgba(182, 174, 174, 0.644);
-  --color-gren-06: rgba(135, 211, 135, 0.644);
+  --color-green-06: rgba(135, 211, 135, 0.644);
   --color-text: rgb(55, 55, 63);
   --color-input-border: rgba(131, 126, 126, 0.342);
   --color-item-border: rgba(131, 126, 126, 0.642);
@@ -11,6 +11,7 @@
   --color-btn: rgb(74, 172, 107);
   --color-bgc: rgba(220, 231, 179, 0.438);
   --color-bgc-item: rgba(97, 96, 110, 0.138);
+  --color-green-02: rgba(135, 211, 135, 0.244);
 
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   --animation-duration: 250ms;

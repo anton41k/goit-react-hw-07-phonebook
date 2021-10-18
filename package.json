@@ -1,6 +1,7 @@
 {
   "name": "goit-react-hw-07-phonebook",
   "version": "0.1.0",
+  "homepage": "https://anton41k.github.io/goit-react-hw-07-phonebook",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",

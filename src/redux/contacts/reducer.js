@@ -6,4 +6,8 @@ const filter = createReducer("", {
   [actions.getFilterValue]: (_, { payload }) => payload,
 });
 
-export default combineReducers({ filter });
+const addNameContact = createReducer(null, {
+  [actions.getAddNameContact]: (state, { payload }) => payload,
+});
+
+export default combineReducers({ filter, addNameContact });

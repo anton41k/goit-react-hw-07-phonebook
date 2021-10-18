@@ -10,7 +10,7 @@
 }
 
 .del_btn_active {
-  background-color: var(--color-gren);
+  background-color: var(--color-green);
 }
 .del_btn_disabled {
   background-color: var(--color-input-border);
@@ -32,12 +32,16 @@
   border-radius: 5px;
 }
 
-.contact_item:hover {
+.contact_item_h:hover {
   background-color: var(--color-bgc-item);
 }
 
 .contact_item span {
   padding: 15px 8px;
+}
+
+.contact_item_add {
+  background-color: var(--color-green-02);
 }
 
 .contact_item button {

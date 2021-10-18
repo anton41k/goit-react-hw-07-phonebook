@@ -7,9 +7,17 @@ import ClipLoader from "react-spinners/ClipLoader";
 import 'react-toastify/dist/ReactToastify.css';
 import css from "./Form.module.css";
 
+import { getAddNameContact } from '../../redux/contacts/selectors.js';
+import { useSelector, useDispatch } from 'react-redux';
+import { actions } from '../../redux/contacts';
+
+
 function Form() {
-  const { data: contacts } = useGetContactsQuery();
-  const [addContact, {isLoading}] = useAddContactMutation();
+  const { data: contacts, isLoading } = useGetContactsQuery();
+  const [addContact] = useAddContactMutation();
+  
+  const addNameContact = useSelector(getAddNameContact);
+  const dispatch = useDispatch();
 
   const nameInputId = uuidv4();
   const numberInputId = uuidv4();
@@ -17,7 +25,6 @@ function Form() {
   const handleSubmit = async ev => {
     ev.preventDefault();
     const { name, number } = ev.currentTarget.elements;
-    console.log(name.value);
 
     const found = contacts.find((contact) => contact.name === name.value);
     if (found) {
@@ -25,7 +32,9 @@ function Form() {
       ev.currentTarget.reset();
         return
       }
-
+    
+    dispatch(actions.getAddNameContact(name.value))
+    console.log('Form ', addNameContact);
     try {
       addContact({name: name.value, number: number.value});
       toast.success(`Contact ${name.value} created!`);
@@ -33,8 +42,6 @@ function Form() {
     } catch (error) {
       toast.error(error);
     }
-    
-    
 }
 
   return (

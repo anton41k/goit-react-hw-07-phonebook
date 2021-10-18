@@ -55,7 +55,7 @@
 }
 
 .form_submit_active {
-  background-color: var(--color-gren);
+  background-color: var(--color-green);
 }
 
 .form_submit_active:hover {
