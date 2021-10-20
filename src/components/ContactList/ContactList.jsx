@@ -7,6 +7,43 @@ import { getFilterValue, getAddNameContact } from '../../redux/contacts/selector
 import Contact from "../Contact/Contact";
 import csss from "./ContactList.module.css";
 
+let stringToColor = (str) => {
+    const hash = 0;
+    const color = '#';
+    const i;
+    const value;
+    const strLength;
+
+    if(!str) {
+        return color + '333333';
+    }
+
+    strLength = str.length;
+
+    for (i = 0; i < strLength; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+
+    for (i = 0; i < 3; i++) {
+        value = (hash >> (i * 8)) & 0xFF;
+        color += ('00' + value.toString(16)).substr(-2);
+    }
+
+    return color;
+};
+let letter = '';
+const firstUpperLetterContact = (name) => {
+  let backgroundColor = stringToColor(name);
+  console.log('backgroundColor ', backgroundColor)
+  const firstLetter = name.substr(0, 1).toUpperCase();
+  console.log('firstLetter ', firstLetter)
+  if(letter !== firstLetter){
+    letter = firstLetter;
+    return {backgroundColor: backgroundColor, firstLetter: firstLetter}
+  }
+  return null
+}
+
 const ContactList = () => {
   const filter = useSelector(getFilterValue);
   const addNameContact = useSelector(getAddNameContact);
@@ -39,8 +76,8 @@ const ContactList = () => {
         color={"green"}
       />
       {contacts?.map((contact) => (
-          
-        <Contact key={contact.id} {...contact} addNameContact={ addNameContact}/>
+        
+        <Contact key={contact.id} {...contact} addNameContact={ addNameContact} optionFirstLetter={firstUpperLetterContact(contact.name)}/>
         
       ))}
     </ul>
