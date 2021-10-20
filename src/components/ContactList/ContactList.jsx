@@ -77,7 +77,7 @@ const ContactList = () => {
       />
       {contacts?.map((contact) => (
         
-        <Contact key={contact.id} {...contact} addNameContact={ addNameContact} optionFirstLetter={firstUpperLetterContact(contact.name)}/>
+        <Contact key={contact.id} {...contact} addNameContact={ addNameContact} optionFirstLetter={firstUpperLetterContact}/>
         
       ))}
     </ul>
