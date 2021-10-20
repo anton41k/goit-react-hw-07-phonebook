@@ -65,7 +65,7 @@ const ContactList = () => {
       contacts: filteredContacts(filter, data),
     }),
   });
-
+console.log('backgroundColor ', contacts)
   return (
     <ul className={csss.contact_list}>
       <BeatLoader
