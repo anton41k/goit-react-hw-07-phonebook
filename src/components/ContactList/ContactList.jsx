@@ -8,11 +8,10 @@ import Contact from "../Contact/Contact";
 import csss from "./ContactList.module.css";
 
 let stringToColor = (str) => {
-    const hash = 0;
-    const color = '#';
-    const i;
-    const value;
-    const strLength;
+    let hash = 0;
+    let color = '#';
+    let value = null;
+    let strLength = null;
 
     if(!str) {
         return color + '333333';
@@ -20,23 +19,21 @@ let stringToColor = (str) => {
 
     strLength = str.length;
 
-    for (i = 0; i < strLength; i++) {
+    for (let i = 0; i < strLength; i++) {
         hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
 
-    for (i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
         value = (hash >> (i * 8)) & 0xFF;
         color += ('00' + value.toString(16)).substr(-2);
     }
-
+console.log(color);
     return color;
 };
 let letter = '';
 const firstUpperLetterContact = (name) => {
   let backgroundColor = stringToColor(name);
-  console.log('backgroundColor ', backgroundColor)
   const firstLetter = name.substr(0, 1).toUpperCase();
-  console.log('firstLetter ', firstLetter)
   if(letter !== firstLetter){
     letter = firstLetter;
     return {backgroundColor: backgroundColor, firstLetter: firstLetter}

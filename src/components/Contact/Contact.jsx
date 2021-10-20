@@ -5,6 +5,7 @@ import css from "./Contact.module.css";
 
 const Contact = ({ id, name, number, addNameContact, optionFirstLetter }) => {
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
+  const firstUpperLetterContact = optionFirstLetter(name);
   if (isDeleting) {
     toast.success(`Contact ${name} is delete!!!`);
   }
@@ -13,7 +14,12 @@ const Contact = ({ id, name, number, addNameContact, optionFirstLetter }) => {
 
   return (
     <li className={`${addNameContact === name ? `${css.contact_item_add}` : `${css.contact_item_h}`} ${css.contact_item}`}>
-      {optionFirstLetter(name) && <span className={css.first_letter} >{optionFirstLetter.firstLetter}</span>}
+      {firstUpperLetterContact &&
+        <span
+          className={css.first_letter}
+        style={{ backgroundColor:  firstUpperLetterContact.backgroundColor  }}>
+            {firstUpperLetterContact.firstLetter}
+        </span>}
       <span className={css.contact_name}>{name}</span>
       <span className={css.contact_number}>{number}</span>
 
