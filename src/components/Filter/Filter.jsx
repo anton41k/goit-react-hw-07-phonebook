@@ -1,13 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-import { getFilterValue, getAddNameContact } from '../../redux/contacts/selectors.js';
+import { getFilterValue } from '../../redux/contacts/selectors.js';
 import { actions } from '../../redux/contacts';
 import css from "./Filter.module.css";
 
 const Filter = () => {
   const filter = useSelector(getFilterValue);
   const dispatch = useDispatch();
+  dispatch(actions.getFirstLetteName(null))
 
   return (
     <label className={css.filter_label}>

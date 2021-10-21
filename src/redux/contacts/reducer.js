@@ -7,7 +7,11 @@ const filter = createReducer("", {
 });
 
 const addNameContact = createReducer(null, {
-  [actions.getAddNameContact]: (state, { payload }) => payload,
+  [actions.getAddNameContact]: (_, { payload }) => payload,
 });
 
-export default combineReducers({ filter, addNameContact });
+const firstLetteName = createReducer(null, {
+  [actions.getFirstLetteName]: (_, { payload }) => payload,
+});
+
+export default combineReducers({ filter, addNameContact, firstLetteName });
