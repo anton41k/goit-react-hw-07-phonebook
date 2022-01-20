@@ -8,7 +8,7 @@ const middleware = [...getDefaultMiddleware(), logger, contactApi.middleware];
 
 const store = configureStore({
   reducer: {
-    phonebook: contactsReducer,
+    //phonebook: contactsReducer,
     [contactApi.reducerPath]: contactApi.reducer,
   },
   devTools: process.env.NODE_ENV === "development",
